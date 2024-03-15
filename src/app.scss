@@ -1,0 +1,11 @@
+h1 {
+  font-size: 2em;
+  transition: all 0.3s;
+  color: blue;
+
+  &:hover {
+    transform: translateX(50px);
+    backdrop-filter: blur(2px);
+    color: red;
+  }
+}
