@@ -6,7 +6,7 @@ h1 {
   &:hover {
     transform: translateX(50px);
     backdrop-filter: blur(2px);
-    color: red;
+    color: green($color: #000000);
   }
 }
 

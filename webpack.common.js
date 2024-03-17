@@ -1,9 +1,13 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const {
+  ProvidePlugin,
+} = require('webpack');
+
 const path = require('path');
-module.exports = {
-  mode: 'development',
-  devtool:
-    'hidden-nosources-source-map',
+module.exports = ({
+  outputFile,
+  assetFile,
+}) => ({
   entry: {
     app: './src/app.js',
     sub: './src/sub.js',
@@ -13,10 +17,8 @@ module.exports = {
       __dirname,
       'public'
     ),
-    filename: '[name].[chunkhash].js',
-    clean: {
-      keep: /\.html/,
-    },
+    filename: `${outputFile}.js`,
+    clean: true,
   },
   module: {
     rules: [
@@ -48,18 +50,22 @@ module.exports = {
         test: /\.(jpe?g|gif|png|svg|woff2?|ttf|eot)$/,
         type: 'asset/resource',
         generator: {
-          filename:
-            'images/[contenthash][ext][query]',
+          filename: `images/${assetFile}.[ext]`,
         },
+      },
+      {
+        test: /\.html$/,
+        use: ['html-loader'],
       },
     ],
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename:
-        '[name].[chunkhash].css',
-      chunkFilename:
-        '[name].[chunkhash].css',
+      filename: `${outputFile}.css`,
+    }),
+    new ProvidePlugin({
+      jQuery: 'jquery',
+      $: 'jquery',
     }),
   ],
-};
+});
