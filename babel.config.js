@@ -3,14 +3,20 @@ module.exports = (api) => {
 
   return {
     presets: [
-      ['@babel/preset-env'],
-      {
-        targets: {
+      [
+        '@babel/preset-env',
+        {
           //targetsプロパティのオブジェクトは、browserlistと互換性がある。
-          ie: '11', //ieの11で動くようにしてください！
-          chrome: '60', //chrome の60で動くようにしてください！
+          targets: [
+            'last 1 version',
+            '> 1%',
+            'maintained node versions',
+            'not dead',
+          ],
+          useBuiltIns: 'usage',
+          corejs: 3,
         },
-      },
+      ],
     ],
   };
 };

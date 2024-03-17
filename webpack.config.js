@@ -21,9 +21,18 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?/,
+        enforce: 'pre',
+        test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
+        loader: 'eslint-loader',
+        options: {
+          fix: true, //自動修正してくれる。
+        },
+      },
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        use: ['babel-loader'],
       },
       {
         test: /\.scss$/,
