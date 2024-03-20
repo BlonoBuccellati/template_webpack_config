@@ -1,0 +1,18 @@
+h1 {
+  font-size: 2em;
+  transition: all 0.3s;
+  color: blue;
+}
+h1:hover {
+  transform: translateX(50px);
+  -webkit-backdrop-filter: blur(2px);
+          backdrop-filter: blur(2px);
+  color: 0;
+}
+
+.bg {
+  background-image: url("./images/favicon.png");
+  background-size: cover;
+  width: 100px;
+  height: 100px;
+}/*# sourceMappingURL=app.css.map */
